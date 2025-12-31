@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Happy New Year — Om❤️ Shweta</title>
+<style>
+body{
+  margin:0;
+  background:#050505;
+  color:#fff;
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
+}
+
+/* Sparkles */
+.sparkle{
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  pointer-events:none;
+}
+.sparkle span{
+  position:absolute;
+  width:4px;height:4px;
+  background:#fff;
+  border-radius:50%;
+  opacity:.8;
+  animation:twinkle 3s linear infinite;
+}
+@keyframes twinkle{
+  0%,100%{transform:scale(0);opacity:.2}
+  50%{transform:scale(1.6);opacity:1}
+}
+
+/* Floating Hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  width:18px;height:18px;
+  background:#ff2f6e;
+  transform:rotate(45deg);
+  animation:float 6s linear infinite;
+}
+.heart:before,.heart:after{
+  content:"";
+  position:absolute;
+  width:18px;height:18px;
+  background:#ff2f6e;
+  border-radius:50%;
+}
+.heart:before{top:-9px;left:0}
+.heart:after{left:-9px;top:0}
+@keyframes float{
+  0%{transform:translateY(0) rotate(45deg);opacity:1}
+  100%{transform:translateY(-110vh) rotate(45deg);opacity:0}
+}
+
+/* Slides */
+.slide-container{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.slide{
+  position:absolute;
+  width:85%;
+  max-width:900px;
+  text-align:center;
+  padding:30px 20px;
+  border-radius:24px;
+  background:rgba(255,255,255,0.06);
+  box-shadow:0 0 40px rgba(255,255,255,.25);
+  backdrop-filter:blur(8px);
+  opacity:0;
+  transform:scale(.9);
+  transition:1s ease;
+}
+.slide.active{
+  opacity:1;
+  transform:scale(1);
+}
+h1{font-size:34px;margin:0 0 10px}
+p{font-size:18px;line-height:1.6}
+
+/* Next button removed since auto-slide now */
+</style>
+</head>
+
+<body>
+
+<!-- Sparkles -->
+<div class="sparkle" id="sparkles"></div>
+<!-- Hearts -->
+<div id="hearts"></div>
+
+<!-- Slides -->
+<div class="slide-container">
+  <div class="slide active" id="s1">
+    <h1>✨ Happy New Year Shweta ✨</h1>
+    <p>From the moment you entered my life… every second feels brighter.  
+    This New Year begins with <b>you in my heart</b>, forever. — <b>Om</b> ❤️</p>
+  </div>
+
+  <div class="slide" id="s2">
+    <h1>❤️ You Are My Favorite Beginning</h1>
+    <p>Every sunrise feels special because I get to love you more than yesterday…  
+    and dream of tomorrow with you, my Shweta.</p>
+  </div>
+
+  <div class="slide" id="s3">
+    <h1>💫 Our Love — Stronger Than Time</h1>
+    <p>No distance… no fear… no doubt.  
+    Just <b>you & me</b>, holding hearts… choosing each other in every year ahead.</p>
+  </div>
+
+  <div class="slide" id="s4">
+    <h1>🤍 Forever Yours, My Shweta</h1>
+    <p>
+    With every heartbeat I promise love, care, respect and truth…  
+    I choose you in happiness, in silence, in storms, in every season of life.  
+    This New Year is not just a date — it is our journey, our bond, our future.  
+    Thank you for existing in my world… I am endlessly yours — <b>Om</b> ❤️
+    </p>
+  </div>
+</div>
+
+<!-- Hidden autoplay music -->
+<audio id="music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" autoplay loop></audio>
+
+<script>
+/* Auto slide every 5 seconds */
+const slides=[s1,s2,s3,s4];
+let current=0;
+setInterval(()=>{
+  slides[current].classList.remove("active");
+  current = (current+1)%slides.length;
+  slides[current].classList.add("active");
+},5000);
+
+/* sparkles */
+for(let i=0;i<60;i++){
+  let s=document.createElement("span");
+  s.style.left=Math.random()*100+"%";
+  s.style.top=Math.random()*100+"%";
+  s.style.animationDelay=(Math.random()*3)+"s";
+  sparkles.appendChild(s);
+}
+
+/* floating hearts */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.style.left=Math.random()*100+"%";
+  h.style.animationDuration=(4+Math.random()*4)+"s";
+  hearts.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+},600);
+</script>
+
+</body>
+</html>
